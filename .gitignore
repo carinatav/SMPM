@@ -1,0 +1,11 @@
+# Arquivos de ambiente (NUNCA subir pro GitHub)
+.env
+*.env
+backend/.env
+frontend/.env
+
+# Node
+node_modules/
+
+# Build
+dist/
