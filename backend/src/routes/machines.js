@@ -1,25 +1,28 @@
-// src/routes/machines.js
-const express = require('express')
-const router = express.Router()
-
-const {
+// backend/src/routes/machines.js
+import { Router } from 'express'
+import {
   getMachines,
   getMachineById,
   createMachine,
   updateMachine,
   deleteMachine,
-} = require('../controllers/machineController')
+} from '../controllers/machineController.js'
 
-// se quiser proteger com JWT, descomenta a linha abaixo
-// const { authMiddleware } = require('../middleware/authMiddleware')
+const router = Router()
 
-// e usa authMiddleware nas rotas (exemplo):
-// router.get('/', authMiddleware, getMachines)
-
+// Listar todas as máquinas
 router.get('/', getMachines)
+
+// Buscar máquina por ID
 router.get('/:id', getMachineById)
+
+// Criar nova máquina
 router.post('/', createMachine)
+
+// Atualizar máquina
 router.put('/:id', updateMachine)
+
+// Deletar máquina
 router.delete('/:id', deleteMachine)
 
-module.exports = router
+export default router
