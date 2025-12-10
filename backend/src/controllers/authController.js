@@ -177,11 +177,15 @@ export const googleCallback = async (req, res) => {
       }
     }
 
+    // gera token JWT
     const token = generateToken(user)
 
-    // redireciona de volta pro FRONT com token, nome e avatar
+    // URL do frontend (produção ou localhost)
+    const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173'
+    const base = frontendUrl.replace(/\/$/, '') // tira / do final se tiver
+
     const redirectUrl =
-      `http://localhost:5173/login` +
+      `${base}/login` +
       `?googleToken=${encodeURIComponent(token)}` +
       `&name=${encodeURIComponent(user.name)}` +
       `&avatar=${encodeURIComponent(user.avatar || '')}`
